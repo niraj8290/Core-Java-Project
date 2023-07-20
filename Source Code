@@ -1,0 +1,120 @@
+class Acc {
+	
+	private String accNumber;
+	private String accHolder;
+	private double balance;
+
+  
+	// Constructor Decleration
+	public Acc(String accNumber, String accHolder, Double initialBalance){
+		this.accNumber = accNumber;
+		this.accHolder = accHolder;
+		this.balance = initialBalance;
+	
+		
+	}
+		// getters to get the value and return to variable
+    public String getAccNumber() {
+    	return accNumber;
+    	
+    }
+    public String getAccHolder() {
+    	return accHolder;
+    	
+    }
+    public double getBalance() {
+    	return balance;
+    	
+    }
+
+    // Declare Method to deposit value
+    public void deposit(double amount) {
+    	if(amount > 0) {
+    		balance = balance+amount;
+    		System.out.println("Deposit of $ "+amount + "Succesful." );
+    		
+    		
+    	}
+    	else {
+    		
+    		System.out.println("Invalid amount for deposit. ");
+    		
+    	}
+    }
+
+    // Declare Method to withdraw value
+    public void Withdraw(double amount) {
+    	if(amount > 0 && amount <= balance) {
+    		balance = balance-amount;
+    		System.out.println("withdrawal of $ "+amount + "Succesful." );
+    		
+    	}
+        else {
+    		
+    		System.out.println("Invalid amount for withdrawl. ");
+    		
+    	}
+    	
+    
+    }
+}
+
+
+# Main Class for the Banking application
+//scanner class to take input from user
+import java.util.*;
+public class Bank {
+
+	public static void main(String[] args) {
+
+    //scanner class to take input from user
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter your acc number : ");
+		String accNumber = sc.next();
+		
+		System.out.println("Enter  acc Holder Name : ");
+		String accHolder = sc.next();
+		
+		System.out.println("Enter Initial Balance : ");
+		
+		Double initialBalance = sc.nextDouble();
+
+    //created object of a class Acc
+		Acc a1 = new Acc(accNumber,accHolder,initialBalance);
+		
+		while(true) {
+			System.out.println("\nWelcome,"+ a1.getAccHolder());
+			
+			System.out.println("Account Number: "+ a1.getAccNumber());
+			
+			System.out.println("Current Balance: " +a1.getBalance());
+			
+			System.out.println("\nMenu:");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();           
+            switch (choice) {
+             case 1:
+                System.out.print("Enter deposit amount: ");
+                double depositAmount = sc.nextDouble();
+                a1.deposit(depositAmount);
+                break;
+             case 2:
+                System.out.print("Enter withdrawal amount: ");
+                double withdrawalAmount = sc.nextDouble();
+                a1.Withdraw(withdrawalAmount);
+                break;
+             case 3:
+                System.out.println("Thank you for using our banking application!");
+                System.exit(0);
+             default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+		}
+
+	}
+
+}
